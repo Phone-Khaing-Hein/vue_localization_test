@@ -1,22 +1,16 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from 'vue';
+import App from './App.vue';
 import { createI18n } from 'vue-i18n';
 
 const i18n = createI18n({
-    locale: 'en', // default locale
+    locale: 'en',
+    allowComposition: true, // you need to specify that!
     messages: {
-        en: {
-            message: {
-                greeting: 'Hello!'
-            }
-        },
-        ja: {
-            message: {
-                greeting: 'こんにちは！'
-            }
-        }
-        // Define other languages here
+        en: require('./locales/en.json'),
+        ja: require('./locales/ja.json')
     }
-});
+})
 
-createApp(App).use(i18n).mount('#app');
+const app = createApp(App);
+app.use(i18n);
+app.mount('#app');
